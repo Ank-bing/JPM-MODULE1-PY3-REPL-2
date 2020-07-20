@@ -1,0 +1,68 @@
+From 6862b7590763bd00979302e3038195760fa54d25 Mon Sep 17 00:00:00 2001
+From: Ankbing <sgatta1996@gmail.com>
+Date: Mon, 20 Jul 2020 14:13:35 +0000
+Subject: [PATCH] Create Patch File
+
+---
+ __pycache__/client3.cpython-38.pyc | Bin 0 -> 1130 bytes
+ client_test.py                     |   6 +++++-
+ 2 files changed, 5 insertions(+), 1 deletion(-)
+ create mode 100644 __pycache__/client3.cpython-38.pyc
+
+diff --git a/__pycache__/client3.cpython-38.pyc b/__pycache__/client3.cpython-38.pyc
+new file mode 100644
+index 0000000000000000000000000000000000000000..59bdade144947868475b047317eaa763e00d607a
+GIT binary patch
+literal 1130
+zcmYjQPj3@P6rb6hU9S^6q$F|Ta$t&tT1yQMa6thIl%z;i2qq{8MxfQk^PFt5-gRcj
+z2wdl6K8SPVi}cWsFxQ^A_tZnxH{&E?M(^*uoq6x~-tO1ya|GA&bS3_;Ldf6N_;yv%
+zc#2g1g-jAjGa{&yp75OXh3_O2OnM@az6d3g!Dk{WGL#jR5maS#;;BDj4(1`8&<Wil
+z?>~wf_|rPj<Av!p2&Rj`rtF-Y({nog&Ps7TC1MG#W9)`lh6*fC=sPA>L_@5KHCTfs
+zSb0RCDXXvo4OoS>9&3;ZrR4M@dgma5B{|<D$ZJh9@h;AGBz;3#^{-eD*&Y3Gr1fC4
+z-Oh?`k{uPL-h8m}V55CH1oi1jDj)xGmi|Kt=^|aN05yj69I1SYY>c=x$r;sF^O{8Z
+z_#Qp;oXxImf9#F@RU(5M<cy7}wZ^Q+Fq?3+$vdi$!!Gb7%Xrb_`UrRqAVKmENj8L%
+z>w+Ib4l2<Y#ATwBL6PQ~o1oN1_rz3mF^CURX@Y@DyD+np^5m<BDYmEydRdX^R$zkD
+zVWB};x2fU>@hrZIu`^ZK>b?*)kK*5l?W3X(Z8gmC?e_1Tm+LQIZSC)D-(By#y}!P<
+z-Pu{c*FGNf<38q}L43E}%~Htq{X2tCrgjK=3p4H5OdEJz>Bh~E=pybKRdw`rZ6=q?
+z>Xsb1%czX0q&Pe^>AgXC$Mgn4!2HoI{sJ^dFw(-p<w}SXp5*dEKj6wXZP!)N@<in#
+z<Wf0s2QyZ~KoeoEd-lGYXq6!{!XnD3T5zXv+)vUxjz>Sfw(v=QyX1-HKOumdx67Y7
+zqUWT02DR2Ga<^fe@t^(r-1uADzqP&>3qzG<>A@WZIAo<3;mkHnr+pCYxGZuJDy*aE
+zi{SPC_TF1VcO6bwiR4Ki;@GehyJ!N8Jp@Bz6JUR3DJqvYSMcUy0J#Z!h3Y5TFa?P;
+zp=*CBLYHZ&A}r4hgR(!nvJG+r;N~dT-@s(&LCvswH0$;+)>U$35p~;VKJ%g~Zhw(-
+LpP_dVsp0((EHxTn
+
+literal 0
+HcmV?d00001
+
+diff --git a/client_test.py b/client_test.py
+index af2bf26..00229e4 100644
+--- a/client_test.py
++++ b/client_test.py
+@@ -1,5 +1,5 @@
+ import unittest
+-from client3 import getDataPoint
++from client3 import *
+ 
+ class ClientTest(unittest.TestCase):
+   def test_getDataPoint_calculatePrice(self):
+@@ -8,6 +8,8 @@ class ClientTest(unittest.TestCase):
+       {'top_ask': {'price': 121.68, 'size': 4}, 'timestamp': '2019-02-11 22:06:30.572453', 'top_bid': {'price': 117.87, 'size': 81}, 'id': '0.109974697771', 'stock': 'DEF'}
+     ]
+     """ ------------ Add the assertion below ------------ """
++    for quote in quotes:
++      self.assertEqual(getDataPoint(quote),(quote["stock"],quote["top_bid"]["price"],quote["top_ask"]["price"],(quote["top_bid"]["price"]+quote["top_ask"]["price"])/2))
+ 
+   def test_getDataPoint_calculatePriceBidGreaterThanAsk(self):
+     quotes = [
+@@ -15,6 +17,8 @@ class ClientTest(unittest.TestCase):
+       {'top_ask': {'price': 121.68, 'size': 4}, 'timestamp': '2019-02-11 22:06:30.572453', 'top_bid': {'price': 117.87, 'size': 81}, 'id': '0.109974697771', 'stock': 'DEF'}
+     ]
+     """ ------------ Add the assertion below ------------ """
++    for quote in quotes:
++      self.assertEqual(getDataPoint(quote),(quote["stock"],quote["top_bid"]["price"],quote["top_ask"]["price"],(quote["top_bid"]["price"]+quote["top_ask"]["price"])/2))
+ 
+ 
+   """ ------------ Add more unit tests ------------ """
+-- 
+2.17.1
+
